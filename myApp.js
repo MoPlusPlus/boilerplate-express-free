@@ -12,16 +12,13 @@ app.get("/", (req, res) => {
 
 app.use("/public", express.static(__dirname + '/public'));
 
-app.use(function middleware(req, res, next) {
-    var string = req.method + " " + req.path + " - " + req.ip;
-    console.log(bodyParser);
-    next();
-});
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
 
 app.use(function middleware(req, res, next) {
-    
-    console.log(string);
     bodyParser.urlencoded({extended: false})
+    console.log(bodyParser);
     next();
 });
 
