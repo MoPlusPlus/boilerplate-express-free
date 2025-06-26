@@ -1,4 +1,5 @@
 require('dotenv').config()
+const bodyParser = require('body-parser')
 const { response } = require('express');
 let express = require('express');
 const res = require('express/lib/response');
@@ -13,7 +14,14 @@ app.use("/public", express.static(__dirname + '/public'));
 
 app.use(function middleware(req, res, next) {
     var string = req.method + " " + req.path + " - " + req.ip;
+    console.log(bodyParser);
+    next();
+});
+
+app.use(function middleware(req, res, next) {
+    
     console.log(string);
+    bodyParser.urlencoded({extended: false})
     next();
 });
 
