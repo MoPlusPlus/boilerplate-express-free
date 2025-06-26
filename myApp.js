@@ -22,6 +22,12 @@ app.use(function middleware(req, res, next) {
     next();
 });
 
+app.post("/name", function(req, res) {
+  // Handle the data in the request
+  var string = req.body.first + " " + req.body.last;
+  res.json({ name: string });
+});
+
 app.get(
   "/now",
   (req, res, next) => {
